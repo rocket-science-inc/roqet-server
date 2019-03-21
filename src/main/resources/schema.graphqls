@@ -1,0 +1,27 @@
+schema {
+  query: RootQuery
+}
+
+type Event {
+  id: String!
+  title: String!
+  start: Float!
+  location: Location!
+  image: String!
+}
+
+type Feed {
+  count: Int
+  page: Int
+  next: Int
+  records: [Event]
+}
+
+type Location {
+  streetAddress: String!
+}
+
+
+type RootQuery {
+  feed(count: Int!, page: Int!): Feed
+}

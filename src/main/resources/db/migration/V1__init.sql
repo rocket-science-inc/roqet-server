@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE `event` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `start` DATETIME NOT NULL,
+  `location` VARCHAR(255) NOT NULL,
+  `image` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
