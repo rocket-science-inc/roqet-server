@@ -1,4 +1,4 @@
-package com.roqet.server.graphql.entities;
+package com.roqet.server.graphql.dto;
 
 import java.util.List;
 

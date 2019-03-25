@@ -1,6 +1,4 @@
-package com.roqet.server.graphql.entities;
-
-import java.util.Date;
+package com.roqet.server.graphql.dto;
 
 import lombok.Builder;
 
@@ -11,7 +9,7 @@ public class EventDTO {
 
 	private String title;
 
-	private Date start;
+	private EventTime time;
 
 	private LocationDTO location;
 

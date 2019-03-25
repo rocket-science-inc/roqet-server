@@ -1,6 +1,6 @@
 package com.roqet.server.services;
 
-import com.roqet.server.graphql.entities.FeedDTO;
+import com.roqet.server.graphql.dto.FeedDTO;
 
 public interface FeedService {
 

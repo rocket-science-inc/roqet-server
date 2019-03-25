@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.roqet.server.db.entities.Event;
 import com.roqet.server.db.repositories.EventRepository;
-import com.roqet.server.graphql.entities.EventDTO;
-import com.roqet.server.graphql.entities.FeedDTO;
+import com.roqet.server.graphql.dto.EventDTO;
+import com.roqet.server.graphql.dto.FeedDTO;
 import com.roqet.server.services.FeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
