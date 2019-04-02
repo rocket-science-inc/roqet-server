@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.roqet.server.graphql.dto.LocationDTO;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
@@ -29,7 +30,17 @@ public class Event {
 
 	private Date end;
 
-	private String location;
+	@Column(name = "location_id")
+	private String locationId;
+
+	@Column(name = "location_name")
+	private String locationName;
+
+	@Column(name = "location_address")
+	private String locationAddress;
+
+	@Column(name = "location_geometry")
+	private String locationGeometry;
 
 	private String image;
 
@@ -43,4 +54,14 @@ public class Event {
 	private String agenda;
 
 	public Event() {}
+
+	public void setLocation(LocationDTO location) {
+		if (location == null) return;
+
+		this.locationId = location.getId();
+		this.locationName = location.getName();
+		this.locationAddress = location.getAddress();
+		this.locationGeometry = location.getGeometry();
+	}
+
 }

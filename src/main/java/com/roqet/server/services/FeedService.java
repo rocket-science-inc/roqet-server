@@ -4,5 +4,5 @@ import com.roqet.server.graphql.dto.FeedDTO;
 
 public interface FeedService {
 
-	FeedDTO feed(int count, int page);
+	FeedDTO feed(int count, int page) throws Exception;
 }

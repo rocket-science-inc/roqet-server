@@ -3,7 +3,7 @@ package com.roqet.server.graphql.dto;
 import lombok.Data;
 
 @Data
-public class AgendaPartDTO {
+public class RecordsDTO {
 
 	private String username;
 

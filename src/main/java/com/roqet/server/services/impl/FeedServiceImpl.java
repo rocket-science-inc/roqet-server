@@ -21,7 +21,7 @@ public class FeedServiceImpl implements FeedService {
 	private EventRepository eventRepository;
 
 	@Override
-	public FeedDTO feed(int count, int page) {
+	public FeedDTO feed(int count, int page) throws Exception {
 		FeedDTO feedDTO = new FeedDTO();
 		feedDTO.setCount(count);
 		feedDTO.setPage(page);
@@ -30,7 +30,7 @@ public class FeedServiceImpl implements FeedService {
 		return feedDTO;
 	}
 
-	private List<EventDTO> getEvents(int count, int page) {
+	private List<EventDTO> getEvents(int count, int page) throws Exception {
 		Page<Event> events = eventRepository.findAll(PageRequest.of(page, count));
 
 		return convertEvents(events.getContent());

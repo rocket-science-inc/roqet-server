@@ -1,11 +1,11 @@
 package com.roqet.server.services;
 
-import com.roqet.server.graphql.dto.EventDetailsDTO;
+import com.roqet.server.graphql.dto.EventDTO;
 
 public interface EventService {
 
-	EventDetailsDTO createEvent(EventDetailsDTO eventDetailsDTO) throws Exception;
+	EventDTO createEvent(EventDTO eventDTO) throws Exception;
 
-	EventDetailsDTO find(Integer id) throws Exception;
+	EventDTO find(Integer id) throws Exception;
 
 }

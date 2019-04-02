@@ -16,6 +16,6 @@ public class RoqetController extends BaseRestController {
 	@RequestMapping(value = "/place", method = RequestMethod.GET)
 	public String getPlace(@RequestParam(value = "input") String input,
 			@RequestParam(value = "fields", required = false) String fields) {
-		return placeApiService.findPlace(input, fields);
+		return placeApiService.findPlace(input);
 	}
 }

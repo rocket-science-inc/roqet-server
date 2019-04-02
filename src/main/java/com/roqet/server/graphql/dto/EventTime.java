@@ -1,5 +1,7 @@
 package com.roqet.server.graphql.dto;
 
+import com.roqet.server.db.entities.Event;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,6 +13,11 @@ public class EventTime {
 
 	private Long end;
 
-	public EventTime() {}
+	public EventTime(Event event) {
+		if (event == null) return;
+
+		this.start = event.getStart().getTime();
+		this.end = event.getEnd().getTime();
+	}
 }
 

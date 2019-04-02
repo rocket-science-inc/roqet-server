@@ -3,7 +3,6 @@ package com.roqet.server.google.impl;
 import javax.annotation.PostConstruct;
 
 import com.roqet.server.google.PlaceApiService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class PlaceApiServiceImpl implements PlaceApiService {
 	private String rest;
 
 	private static final String API_REST_TEMPLATE = "%s?input=%s&inputtype=textquery&fields=%s&key=%s";
-	private static final String API_FIELDS_DEFAULT = "photos,formatted_address,name,rating,opening_hours,geometry";
+	private static final String API_FIELDS_DEFAULT = "id,name,formatted_address,geometry";
 
 	private String apiTemplate;
 
@@ -31,8 +30,8 @@ public class PlaceApiServiceImpl implements PlaceApiService {
 		this.apiTemplate = String.format(API_REST_TEMPLATE, rest, "%s", "%s", key);
 	}
 
-	public String findPlace(String input, String fields) {
-		final String api = String.format(this.apiTemplate, input, StringUtils.isEmpty(fields) ? API_FIELDS_DEFAULT : fields);
+	public String findPlace(String input) {
+		final String api = String.format(this.apiTemplate, input, API_FIELDS_DEFAULT);
 		return restTemplate.getForObject(api, String.class);
 	}
 

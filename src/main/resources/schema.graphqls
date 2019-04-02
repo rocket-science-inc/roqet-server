@@ -5,32 +5,6 @@ schema {
 
 # -- Entities --
 
-type Event {
-  id: ID!
-  title: String!
-  time: EventTimeOut!
-  location: LocationOut!
-  image: String!
-}
-
-type EventDetails {
-  id: ID!
-  title: String!
-  time: EventTimeOut!
-  location: LocationOut!
-  image: String!
-  organizer: ID!
-  description: String!
-  ticketLink: String!
-  agenda: [AgendaPartOut]
-}
-
-type AgendaPartOut {
-  username: String!
-  company: String!
-  description: String!
-}
-
 type Feed {
   count: Int
   page: Int
@@ -38,8 +12,30 @@ type Feed {
   records: [Event]
 }
 
-type LocationOut {
-  streetAddress: String!
+
+type Event {
+  id: ID!
+  title: String!
+  time: EventTimeOut!
+  location: Location!
+  image: String!
+  organizer: ID!
+  description: String!
+  ticketLink: String!
+  agenda: [Records]
+}
+
+type Records {
+  username: String!
+  company: String!
+  description: String!
+}
+
+type Location {
+  id: String!
+  name: String!
+  address: String!
+  geometry: String!
 }
 
 type EventTimeOut {
@@ -53,7 +49,10 @@ type EventTimeOut {
 # -- Inputs --
 
 input LocationIn {
-  streetAddress: String!
+  id: String!
+  name: String!
+  address: String!
+  geometry: String!
 }
 
 input EventTimeIn {
@@ -61,7 +60,7 @@ input EventTimeIn {
   end: Float!
 }
 
-input AgendaPartIn {
+input RecordsIn {
   username: String!
   company: String!
   description: String!
@@ -74,10 +73,11 @@ input AgendaPartIn {
 
 type RootQuery {
   feed(count: Int!, page: Int!): Feed!
-  event(id: Int!): EventDetails!
+  event(id: Int!): Event!
+  findPlace(input: String!): String!
 }
 
 type RootMutation {
   createEvent(title: String!, organizer: Int!, image: String!, description: String!, ticketLink: String!,
-  location: LocationIn!, time: EventTimeIn!, agenda: [AgendaPartIn]): EventDetails!
+  location: LocationIn!, time: EventTimeIn!, agenda: [RecordsIn]): Event!
 }
