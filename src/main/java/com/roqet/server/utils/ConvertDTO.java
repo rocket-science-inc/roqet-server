@@ -34,7 +34,7 @@ public class ConvertDTO {
 		event.setStart(new Date(eventDetails.getTime().getStart()));
 		event.setEnd(new Date(eventDetails.getTime().getEnd()));
 		event.setDescription(eventDetails.getDescription());
-		event.setTicketLink(eventDetails.getTicket_link());
+		event.setTicketLink(eventDetails.getTicketLink());
 		event.setAgenda(eventDetails.getJsonAgenda());
 		 return event;
 	}

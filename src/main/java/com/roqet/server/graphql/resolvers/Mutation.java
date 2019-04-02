@@ -22,7 +22,7 @@ public class Mutation implements GraphQLMutationResolver {
 	private EventService eventService;
 
 	public EventDetailsDTO createEvent(String title, Integer organizer, String image, String description,
-			String ticket_link, LocationDTO location, EventTime time,
+			String ticketLink, LocationDTO location, EventTime time,
 			List<AgendaPartDTO>  agenda) throws Exception {
 
 		EventDetailsDTO eventDetails = EventDetailsDTO.builder()
@@ -30,7 +30,7 @@ public class Mutation implements GraphQLMutationResolver {
 				.organizer(organizer)
 				.image(image)
 				.description(description)
-				.ticket_link(ticket_link)
+				.ticketLink(ticketLink)
 				.location(location)
 				.time(time)
 				.agenda(agenda)

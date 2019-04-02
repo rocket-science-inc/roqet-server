@@ -21,7 +21,7 @@ type EventDetails {
   image: String!
   organizer: ID!
   description: String!
-  ticket_link: String!
+  ticketLink: String!
   agenda: [AgendaPartOut]
 }
 
@@ -78,6 +78,6 @@ type RootQuery {
 }
 
 type RootMutation {
-  createEvent(title: String!, organizer: Int!, image: String!, description: String!, ticket_link: String!,
-  location: LocationIn!, time: EventTimeIn!, agenda: [AgendaPartIn!]!): EventDetails!
+  createEvent(title: String!, organizer: Int!, image: String!, description: String!, ticketLink: String!,
+  location: LocationIn!, time: EventTimeIn!, agenda: [AgendaPartIn]): EventDetails!
 }
