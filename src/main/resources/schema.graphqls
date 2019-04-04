@@ -74,6 +74,7 @@ input RecordsIn {
 type RootQuery {
   feed(count: Int!, page: Int!): Feed!
   event(id: Int!): Event!
+  events(count: Int!, page: Int!): [Event]
   findPlace(input: String!): String!
 }
 

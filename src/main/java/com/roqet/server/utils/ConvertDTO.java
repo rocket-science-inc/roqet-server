@@ -13,8 +13,10 @@ public class ConvertDTO {
 
 	public static EventDTO convertIntoEventDto(Event event) throws Exception {
 		EventDTO eventDTO = EventDTO.builder()
+				.id(event.getId())
 				.title(event.getTitle())
-				.location(new LocationDTO(event))
+				.location(new LocationDTO(event.getLocationId(), event.getLocationName(),
+						event.getLocationAddress(), event.getLocationGeometry()))
 				.image(event.getImage())
 				.time(new EventTime(event))
 				.organizer(event.getOrganizer())

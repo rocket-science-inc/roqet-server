@@ -1,6 +1,5 @@
 package com.roqet.server.graphql.dto;
 
-import com.roqet.server.db.entities.Event;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,13 +15,13 @@ public class LocationDTO {
 
 	private String geometry;
 
-	public LocationDTO(Event event) {
-		if (event == null) return;
-
-		this.id = event.getLocationId();
-		this.name = event.getLocationName();
-		this.address = event.getLocationAddress();
-		this.geometry = event.getLocationGeometry();
-	}
+//	public LocationDTO(Event event) {
+//		if (event == null) return;
+//
+//		this.id = event.getLocationId();
+//		this.name = event.getLocationName();
+//		this.address = event.getLocationAddress();
+//		this.geometry = event.getLocationGeometry();
+//	}
 
 }
