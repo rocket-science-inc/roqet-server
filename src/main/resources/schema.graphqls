@@ -43,6 +43,14 @@ type EventTimeOut {
   end: Float!
 }
 
+type Place {
+  id: String!
+  name: String!
+  secondaryText: String!
+  description: String!
+  placeId: String!
+}
+
 # -- !Entities --
 
 
@@ -75,7 +83,7 @@ type RootQuery {
   feed(count: Int!, page: Int!): Feed!
   event(id: Int!): Event!
   events(count: Int!, page: Int!): [Event]
-  findPlace(input: String!): String!
+  findPlace(input: String!): [Place]
 }
 
 type RootMutation {
