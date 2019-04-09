@@ -5,13 +5,10 @@ schema {
 
 # -- Entities --
 
-type Feed {
-  count: Int
-  page: Int
-  next: Int
-  records: [Event]
+type User {
+  id: ID!
+  fullName: String!
 }
-
 
 type Event {
   id: ID!
@@ -51,6 +48,13 @@ type Place {
   placeId: String!
 }
 
+type Feed {
+  count: Int
+  page: Int
+  next: Int
+  records: [Event]
+}
+
 # -- !Entities --
 
 
@@ -84,6 +88,8 @@ type RootQuery {
   event(id: Int!): Event!
   events(count: Int!, page: Int!): [Event]
   findPlace(input: String!): [Place]
+  user(id: Int!): User
+  users(count: Int!, page: Int!): [User]
 }
 
 type RootMutation {

@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.roqet.server.db.entities.Event;
+import com.roqet.server.db.entities.User;
 import com.roqet.server.graphql.dto.EventDTO;
 import com.roqet.server.graphql.dto.EventTime;
 import com.roqet.server.graphql.dto.LocationDTO;
+import com.roqet.server.graphql.dto.UserDTO;
 
 public class ConvertDTO {
 
@@ -30,8 +32,19 @@ public class ConvertDTO {
 		
 	}
 
+	public static UserDTO convertIntoUserDto(User user) {
+		return UserDTO.builder()
+				.id(user.getId())
+				.fullName(String.format("%s %s", user.getFirstName(), user.getLastName()))
+				.build();
+	}
+
 	public static List<EventDTO> convertEvents(List<Event> events) throws Exception {
 		return events.stream().map(ConvertDTO::handleConvertEventDTO).collect(Collectors.toList());
+	}
+
+	public static List<UserDTO> convertUsers(List<User> users) throws Exception {
+		return users.stream().map(ConvertDTO::convertIntoUserDto).collect(Collectors.toList());
 	}
 
 	private static EventDTO handleConvertEventDTO(Event event) {

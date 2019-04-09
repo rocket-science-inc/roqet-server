@@ -10,8 +10,10 @@ import com.roqet.server.google.dto.PlacesDTO;
 import com.roqet.server.google.services.PlaceApiService;
 import com.roqet.server.graphql.dto.EventDTO;
 import com.roqet.server.graphql.dto.FeedDTO;
+import com.roqet.server.graphql.dto.UserDTO;
 import com.roqet.server.services.EventService;
 import com.roqet.server.services.FeedService;
+import com.roqet.server.services.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +23,9 @@ public class Query implements GraphQLQueryResolver {
 
 	@Autowired
 	private FeedService feedService;
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private EventService eventService;
@@ -43,5 +48,13 @@ public class Query implements GraphQLQueryResolver {
 
 	public List<PlacesDTO> findPlace(String input) {
 		return placeApiService.findPlace(input);
+	}
+
+	public List<UserDTO> users(int count, int page) throws Exception {
+		return userService.users(count, page);
+	}
+
+	public UserDTO user(int id) {
+		return userService.user(id);
 	}
 }
