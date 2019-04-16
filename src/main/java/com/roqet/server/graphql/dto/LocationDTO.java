@@ -1,9 +1,13 @@
 package com.roqet.server.graphql.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @AllArgsConstructor
 public class LocationDTO {
 
@@ -13,15 +17,15 @@ public class LocationDTO {
 
 	private String address;
 
-	private String geometry;
+	private GeometryDTO geometry;
 
-//	public LocationDTO(Event event) {
-//		if (event == null) return;
-//
-//		this.id = event.getLocationId();
-//		this.name = event.getLocationName();
-//		this.address = event.getLocationAddress();
-//		this.geometry = event.getLocationGeometry();
-//	}
+	public void setGeometryJson(String json) throws Exception {
+		ObjectMapper ow = new ObjectMapper();
+		this.geometry =  ow.readValue(json, GeometryDTO.class);
+	}
 
+	public String getGeometryJson() throws Exception {
+		ObjectMapper ow = new ObjectMapper();
+		return ow.writeValueAsString(this.geometry);
+	}
 }

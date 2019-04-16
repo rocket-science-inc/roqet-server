@@ -14,11 +14,13 @@ import com.roqet.server.graphql.dto.UserDTO;
 public class ConvertDTO {
 
 	public static EventDTO convertIntoEventDto(Event event) throws Exception {
+		LocationDTO locationDTO = LocationDTO.builder().id(event.getLocationId()).name(event.getLocationName())
+				.address(event.getLocationAddress()).build();
+		locationDTO.setGeometryJson(event.getLocationGeometry());
 		EventDTO eventDTO = EventDTO.builder()
 				.id(event.getId())
 				.title(event.getTitle())
-				.location(new LocationDTO(event.getLocationId(), event.getLocationName(),
-						event.getLocationAddress(), event.getLocationGeometry()))
+				.location(locationDTO)
 				.image(event.getCloudinaryImageDto())
 				.time(new EventTime(event))
 				.organizer(event.getOrganizer())

@@ -61,13 +61,13 @@ public class Event {
 
 	public Event() {}
 
-	public void setLocation(LocationDTO location) {
+	public void setLocation(LocationDTO location) throws Exception {
 		if (location == null) return;
 
 		this.locationId = location.getId();
 		this.locationName = location.getName();
 		this.locationAddress = location.getAddress();
-		this.locationGeometry = location.getGeometry();
+		this.locationGeometry = location.getGeometryJson();
 	}
 
 	public void setCloudinaryFromJson(CloudinaryImageDTO json) throws Exception {

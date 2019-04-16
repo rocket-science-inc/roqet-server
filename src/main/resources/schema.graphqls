@@ -34,20 +34,17 @@ type Location {
   id: String!
   name: String!
   address: String!
-  geometry: String!
+  geometry: Geometry!
+}
+
+type Geometry {
+  latitude: String!
+  longitude: String!
 }
 
 type EventTimeOut {
   start: Float!
   end: Float!
-}
-
-type Place {
-  id: String!
-  name: String!
-  secondaryText: String!
-  description: String!
-  placeId: String!
 }
 
 type CloudinaryImage {
@@ -85,7 +82,12 @@ input LocationIn {
   id: String!
   name: String!
   address: String!
-  geometry: String!
+  geometry: GeometryIn!
+}
+
+input GeometryIn {
+  latitude: String!
+  longitude: String!
 }
 
 input EventTimeIn {
@@ -120,6 +122,17 @@ input CloudinaryImageIn {
   width: Int
 }
 
+input NewEvent {
+  title: String!,
+  organizer: Int!,
+  image: CloudinaryImageIn!,
+  description: String!,
+  ticketLink: String!,
+  location: LocationIn!,
+  time: EventTimeIn!,
+  agenda: [RecordsIn]
+}
+
 # -- !Inputs --
 
 
@@ -129,12 +142,12 @@ type RootQuery {
   feed(count: Int!, page: Int!): Feed!
   event(id: Int!): Event!
   events(count: Int!, page: Int!): [Event]
-  findPlace(input: String!): [Place]
+  findLocations(input: String!): [Location]
+  findLocation(input: String!): Location
   user(id: Int!): User
   users(count: Int!, page: Int!): [User]
 }
 
 type RootMutation {
-  createEvent(title: String!, organizer: Int!, image: CloudinaryImageIn!, description: String!, ticketLink: String!,
-  location: LocationIn!, time: EventTimeIn!, agenda: [RecordsIn]): Event!
+  createEvent(event: NewEvent!): Event!
 }

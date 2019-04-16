@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.roqet.server.google.dto.PlacesDTO;
 import com.roqet.server.google.services.PlaceApiService;
 import com.roqet.server.graphql.dto.EventDTO;
 import com.roqet.server.graphql.dto.FeedDTO;
+import com.roqet.server.graphql.dto.LocationDTO;
 import com.roqet.server.graphql.dto.UserDTO;
 import com.roqet.server.services.EventService;
 import com.roqet.server.services.FeedService;
@@ -46,8 +46,12 @@ public class Query implements GraphQLQueryResolver {
 		return eventService.events(count, page);
 	}
 
-	public List<PlacesDTO> findPlace(String input) {
-		return placeApiService.findPlace(input);
+	public List<LocationDTO> findLocations(String input) {
+		return placeApiService.findLocations(input);
+	}
+
+	public LocationDTO findLocation(String input) {
+		return placeApiService.findLocation(input);
 	}
 
 	public List<UserDTO> users(int count, int page) throws Exception {
