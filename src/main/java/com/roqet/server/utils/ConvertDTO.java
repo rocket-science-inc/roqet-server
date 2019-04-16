@@ -19,7 +19,7 @@ public class ConvertDTO {
 				.title(event.getTitle())
 				.location(new LocationDTO(event.getLocationId(), event.getLocationName(),
 						event.getLocationAddress(), event.getLocationGeometry()))
-				.image(event.getImage())
+				.image(event.getCloudinaryImageDto())
 				.time(new EventTime(event))
 				.organizer(event.getOrganizer())
 				.description(event.getDescription())
@@ -61,7 +61,7 @@ public class ConvertDTO {
 		event.setTitle(eventDTO.getTitle());
 		event.setOrganizer(eventDTO.getOrganizer());
 		event.setLocation(eventDTO.getLocation());
-		event.setImage(eventDTO.getImage());
+		event.setCloudinaryFromJson(eventDTO.getImage());
 		event.setStart(new Date(eventDTO.getTime().getStart()));
 		event.setEnd(new Date(eventDTO.getTime().getEnd()));
 		event.setDescription(eventDTO.getDescription());

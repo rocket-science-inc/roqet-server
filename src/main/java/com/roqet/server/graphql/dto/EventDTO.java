@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -23,7 +24,7 @@ public class EventDTO {
 
 	private LocationDTO location;
 
-	private String image;
+	private CloudinaryImageDTO image;
 
 	private EventTime time;
 

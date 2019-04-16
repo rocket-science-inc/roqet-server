@@ -1,0 +1,1 @@
+ALTER TABLE `event` CHANGE COLUMN `image` `cloudinary_json` TEXT NULL DEFAULT NULL ;

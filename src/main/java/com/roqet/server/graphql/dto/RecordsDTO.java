@@ -10,4 +10,8 @@ public class RecordsDTO {
 	private String company;
 
 	private String description;
+
+	private Integer position;
+
+	private String title;
 }
