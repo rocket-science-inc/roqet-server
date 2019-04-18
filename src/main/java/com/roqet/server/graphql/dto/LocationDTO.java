@@ -20,6 +20,11 @@ public class LocationDTO {
 	private GeometryDTO geometry;
 
 	public void setGeometryJson(String json) throws Exception {
+		if (json == null || json.isEmpty()) {
+			this.geometry = new GeometryDTO("NaN", "NaN");
+			return;
+		}
+
 		ObjectMapper ow = new ObjectMapper();
 		this.geometry =  ow.readValue(json, GeometryDTO.class);
 	}

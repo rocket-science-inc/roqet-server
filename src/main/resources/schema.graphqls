@@ -6,17 +6,17 @@ schema {
 # -- Entities --
 
 type User {
-  id: ID!
+  id: Int!
   fullName: String!
 }
 
 type Event {
-  id: ID!
+  id: Int!
   title: String!
   time: EventTimeOut!
   location: Location!
   image: CloudinaryImage!
-  organizer: ID!
+  organizer: Int!
   description: String!
   ticketLink: String!
   agenda: [Records]
@@ -26,7 +26,7 @@ type Records {
   username: String!
   company: String!
   description: String!
-  position: Int!
+  position: String!
   title: String!
 }
 
@@ -99,7 +99,7 @@ input RecordsIn {
   username: String!
   company: String!
   description: String!
-  position: Int!
+  position: String!
   title: String!
 }
 

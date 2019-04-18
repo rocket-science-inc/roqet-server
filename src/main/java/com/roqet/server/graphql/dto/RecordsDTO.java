@@ -11,7 +11,7 @@ public class RecordsDTO {
 
 	private String description;
 
-	private Integer position;
+	private String position;
 
 	private String title;
 }
