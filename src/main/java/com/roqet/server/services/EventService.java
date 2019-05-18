@@ -1,8 +1,7 @@
 package com.roqet.server.services;
 
-import java.util.List;
-
 import com.roqet.server.graphql.dto.EventDTO;
+import com.roqet.server.graphql.dto.EventsResponseDTO;
 
 public interface EventService {
 
@@ -10,6 +9,6 @@ public interface EventService {
 
 	EventDTO find(Integer id) throws Exception;
 
-	List<EventDTO> events(int count, int page) throws Exception;
+	EventsResponseDTO events(int count, int page) throws Exception;
 
 }

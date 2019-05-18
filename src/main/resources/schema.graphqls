@@ -16,7 +16,7 @@ type Event {
   time: EventTimeOut!
   location: Location!
   image: CloudinaryImage!
-  organizer: Int!
+  organizer: User!
   description: String!
   ticketLink: String!
   agenda: [Records]
@@ -70,6 +70,12 @@ type Feed {
   count: Int
   page: Int
   next: Int
+  records: [Event]
+}
+
+type EventsResponse {
+  total: Int!
+  pages: Int!
   records: [Event]
 }
 
@@ -141,7 +147,7 @@ input NewEvent {
 type RootQuery {
   feed(count: Int!, page: Int!): Feed!
   event(id: Int!): Event!
-  events(count: Int!, page: Int!): [Event]
+  events(count: Int!, page: Int!): EventsResponse!
   findLocations(input: String!): [Location]
   findLocation(input: String!): Location
   user(id: Int!): User

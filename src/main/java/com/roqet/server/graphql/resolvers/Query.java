@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.roqet.server.google.services.PlaceApiService;
 import com.roqet.server.graphql.dto.EventDTO;
+import com.roqet.server.graphql.dto.EventsResponseDTO;
 import com.roqet.server.graphql.dto.FeedDTO;
 import com.roqet.server.graphql.dto.LocationDTO;
 import com.roqet.server.graphql.dto.UserDTO;
@@ -42,7 +43,7 @@ public class Query implements GraphQLQueryResolver {
 		return eventService.find(id);
 	}
 
-	public List<EventDTO> events(int count, int page) throws Exception {
+	public EventsResponseDTO events(int count, int page) throws Exception {
 		return eventService.events(count, page);
 	}
 

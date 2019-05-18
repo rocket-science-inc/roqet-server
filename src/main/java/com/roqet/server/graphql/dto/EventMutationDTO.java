@@ -13,13 +13,13 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
-public class EventDTO {
+public class EventMutationDTO {
 
 	private Integer id;
 
 	private String title;
 
-	private UserDTO organizer;
+	private Integer organizer;
 
 	private String description;
 

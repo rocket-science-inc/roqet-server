@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.roqet.server.db.entities.Event;
 import com.roqet.server.db.entities.User;
 import com.roqet.server.graphql.dto.EventDTO;
+import com.roqet.server.graphql.dto.EventMutationDTO;
 import com.roqet.server.graphql.dto.EventTime;
 import com.roqet.server.graphql.dto.LocationDTO;
 import com.roqet.server.graphql.dto.UserDTO;
@@ -23,7 +24,7 @@ public class ConvertDTO {
 				.location(locationDTO)
 				.image(event.getCloudinaryImageDto())
 				.time(new EventTime(event))
-				.organizer(event.getOrganizer())
+				.organizer(convertIntoUserDto(event.getOrganizer()))
 				.description(event.getDescription())
 				.ticketLink(event.getTicketLink())
 				.build();
@@ -58,10 +59,10 @@ public class ConvertDTO {
 		return EventDTO.builder().build();
 	}
 
-	public static Event convertIntoEvent(EventDTO eventDTO) throws Exception {
+	public static Event convertIntoEvent(EventDTO eventDTO, User loadedOrganizer) throws Exception {
 		Event event = new Event();
 		event.setTitle(eventDTO.getTitle());
-		event.setOrganizer(eventDTO.getOrganizer());
+		event.setOrganizer(loadedOrganizer);
 		event.setLocation(eventDTO.getLocation());
 		event.setCloudinaryFromJson(eventDTO.getImage());
 		event.setStart(new Date(eventDTO.getTime().getStart()));
@@ -70,5 +71,19 @@ public class ConvertDTO {
 		event.setTicketLink(eventDTO.getTicketLink());
 		event.setAgenda(eventDTO.getJsonAgenda());
 		 return event;
+	}
+
+	public static EventDTO convertMutationToEventDto(EventMutationDTO eventMutationDTO, UserDTO userDTO) {
+		return EventDTO.builder()
+				.id(eventMutationDTO.getId())
+				.title(eventMutationDTO.getTitle())
+				.organizer(userDTO)
+				.description(eventMutationDTO.getDescription())
+				.ticketLink(eventMutationDTO.getTicketLink())
+				.location(eventMutationDTO.getLocation())
+				.image(eventMutationDTO.getImage())
+				.time(eventMutationDTO.getTime())
+				.agenda(eventMutationDTO.getAgenda())
+				.build();
 	}
 }
