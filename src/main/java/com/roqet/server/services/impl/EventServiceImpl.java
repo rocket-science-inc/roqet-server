@@ -29,11 +29,19 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	@Transactional
-	public EventDTO createEvent(EventDTO eventDTO) throws Exception {
+	public EventDTO createOrUpdateEvent(EventDTO eventDTO) throws Exception {
 		UserDTO organizer = eventDTO.getOrganizer();
-		User user = userRepository.findById(organizer.getId()).orElse(null);
+		User user = userRepository.findById(organizer.getId()).orElseThrow(() -> new RuntimeException("Organizer is not found."));
 
-		Event event = convertIntoEvent(eventDTO, user);
+		Event event;
+
+		if (eventDTO.getId() != null) {
+			event = eventRepository.findById(eventDTO.getId()).orElse(new Event());
+			event = convertIntoEvent(event, eventDTO, user);
+		} else {
+			event = convertIntoEvent(eventDTO, user);
+		}
+
 		event = eventRepository.save(event);
 
 		eventDTO.setId(event.getId());

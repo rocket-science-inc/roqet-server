@@ -1,5 +1,6 @@
 package com.roqet.server.graphql.dto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,7 +47,7 @@ public class EventDTO {
 
 		ObjectMapper ow = new ObjectMapper();
 		RecordsDTO[] agendaArr = ow.readValue(agendaS, RecordsDTO[].class);
-		this.agenda = Arrays.asList(agendaArr);
+		this.agenda = agendaArr == null ? new ArrayList<>() : Arrays.asList(agendaArr);
 	}
 
 }

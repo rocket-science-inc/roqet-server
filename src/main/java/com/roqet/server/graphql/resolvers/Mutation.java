@@ -24,9 +24,17 @@ public class Mutation implements GraphQLMutationResolver {
 	private UserService userService;
 
 	public EventDTO createEvent(EventMutationDTO event) throws Exception {
+		return createOrUpdateEvent(event);
+	}
+
+	public EventDTO updateEvent(EventMutationDTO event) throws Exception {
+		return createOrUpdateEvent(event);
+	}
+
+	private EventDTO createOrUpdateEvent(EventMutationDTO event) throws Exception {
 		Integer organizerId = event.getOrganizer();
 		UserDTO user = userService.user(organizerId);
 
-		return eventService.createEvent(convertMutationToEventDto(event, user));
+		return eventService.createOrUpdateEvent(convertMutationToEventDto(event, user));
 	}
 }

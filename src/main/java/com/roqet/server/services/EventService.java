@@ -5,7 +5,7 @@ import com.roqet.server.graphql.dto.EventsResponseDTO;
 
 public interface EventService {
 
-	EventDTO createEvent(EventDTO eventDTO) throws Exception;
+	EventDTO createOrUpdateEvent(EventDTO eventDTO) throws Exception;
 
 	EventDTO find(Integer id) throws Exception;
 

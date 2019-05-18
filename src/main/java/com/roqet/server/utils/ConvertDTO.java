@@ -15,8 +15,11 @@ import com.roqet.server.graphql.dto.UserDTO;
 public class ConvertDTO {
 
 	public static EventDTO convertIntoEventDto(Event event) throws Exception {
-		LocationDTO locationDTO = LocationDTO.builder().id(event.getLocationId()).name(event.getLocationName())
-				.address(event.getLocationAddress()).build();
+		LocationDTO locationDTO = LocationDTO.builder()
+				.id(event.getLocationId())
+				.name(event.getLocationName())
+				.address(event.getLocationAddress())
+				.build();
 		locationDTO.setGeometryJson(event.getLocationGeometry());
 		EventDTO eventDTO = EventDTO.builder()
 				.id(event.getId())
@@ -60,16 +63,22 @@ public class ConvertDTO {
 	}
 
 	public static Event convertIntoEvent(EventDTO eventDTO, User loadedOrganizer) throws Exception {
-		Event event = new Event();
-		event.setTitle(eventDTO.getTitle());
-		event.setOrganizer(loadedOrganizer);
-		event.setLocation(eventDTO.getLocation());
-		event.setCloudinaryFromJson(eventDTO.getImage());
-		event.setStart(new Date(eventDTO.getTime().getStart()));
-		event.setEnd(new Date(eventDTO.getTime().getEnd()));
-		event.setDescription(eventDTO.getDescription());
-		event.setTicketLink(eventDTO.getTicketLink());
-		event.setAgenda(eventDTO.getJsonAgenda());
+		return convertIntoEvent(new Event(), eventDTO, loadedOrganizer);
+	}
+
+	public static Event convertIntoEvent(Event event, EventDTO eventDTO, User loadedOrganizer) throws Exception {
+		if (eventDTO.getId() != null) event.setId(eventDTO.getId());
+		if (eventDTO.getTitle() != null) event.setTitle(eventDTO.getTitle());
+		if (loadedOrganizer != null) event.setOrganizer(loadedOrganizer);
+		if (eventDTO.getLocation() != null) event.setLocation(eventDTO.getLocation());
+		if (eventDTO.getImage() != null) event.setCloudinaryFromJson(eventDTO.getImage());
+		if (eventDTO.getTime() != null && eventDTO.getTime().getStart() != null)
+			event.setStart(new Date(eventDTO.getTime().getStart()));
+		if (eventDTO.getTime() != null && eventDTO.getTime().getEnd() != null)
+			event.setEnd(new Date(eventDTO.getTime().getEnd()));
+		if (eventDTO.getDescription() != null) event.setDescription(eventDTO.getDescription());
+		if (eventDTO.getTicketLink() != null) event.setTicketLink(eventDTO.getTicketLink());
+		if (eventDTO.getJsonAgenda() != null) event.setAgenda(eventDTO.getJsonAgenda());
 		 return event;
 	}
 

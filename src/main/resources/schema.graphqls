@@ -102,11 +102,11 @@ input EventTimeIn {
 }
 
 input RecordsIn {
-  username: String!
-  company: String!
-  description: String!
-  position: String!
-  title: String!
+  username: String
+  company: String
+  description: String
+  position: String
+  title: String
 }
 
 input CloudinaryImageIn {
@@ -139,6 +139,18 @@ input NewEvent {
   agenda: [RecordsIn]
 }
 
+input ModifiedEvent {
+  id: Int!
+  title: String,
+  organizer: Int,
+  image: CloudinaryImageIn,
+  description: String,
+  ticketLink: String,
+  location: LocationIn,
+  time: EventTimeIn,
+  agenda: [RecordsIn]
+}
+
 # -- !Inputs --
 
 
@@ -156,4 +168,5 @@ type RootQuery {
 
 type RootMutation {
   createEvent(event: NewEvent!): Event!
+  updateEvent(event: ModifiedEvent!): Event!
 }
